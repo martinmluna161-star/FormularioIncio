@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LÓGICA - Diagnóstico Inicial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed">
+
+  <div class="max-w-4xl mx-auto my-8 p-6 bg-white rounded-xl shadow-md border border-slate-200">
+    <!-- Header / Branding -->
+    <div class="bg-slate-900 -m-6 mb-8 p-8 rounded-t-xl border-b-4 border-sky-500 text-white">
+      <h1 class="text-2xl font-extrabold tracking-wider text-sky-400 uppercase">LÓGICA</h1>
+      <p class="text-xs text-slate-400 uppercase tracking-widest mt-1">Consultoría Estratégica & Optimización de Procesos</p>
+      <h2 class="text-xl font-bold mt-4 text-white">Relevamiento Operativo & Diagnóstico Comercial</h2>
+      <p class="text-sm text-slate-300 mt-1">Empresas Familiares y Transición Tecnológica</p>
+    </div>
+
+    <!-- Reemplazar TU_FORM_ID por tu endpoint de Formspree -->
+    <form action="https://formspree.io/f/TU_FORM_ID" method="POST" class="space-y-8">
+      
+      <!-- Sección 1 -->
+      <fieldset class="space-y-4">
+        <legend class="text-lg font-bold text-slate-900 border-b border-slate-200 w-full pb-2 uppercase text-xs tracking-wider text-sky-600">1. Estructura Familiar y Roles</legend>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Cuentan con personal adicional en ventas, administración o depósito? (Indicar cantidad y funciones)</label>
+          <textarea name="personal_funciones" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Cómo se reparten actualmente las tareas entre el fundador y los 3 hijos?</label>
+          <textarea name="reparto_tareas" rows="3" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Cómo se toman las decisiones operativas y estratégicas diario?</label>
+          <textarea name="toma_decisiones" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- Sección 2 -->
+      <fieldset class="space-y-4">
+        <legend class="text-lg font-bold text-slate-900 border-b border-slate-200 w-full pb-2 uppercase text-xs tracking-wider text-sky-600">2. Operativa de Ventas, Administración y Finanzas</legend>
+        <div>
+          <label class="block font-semibold text-sm mb-1">Describa el flujo actual de ventas (Mostrador vs. Cuentas Corrientes/Mayoristas):</label>
+          <textarea name="flujo_ventas" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Cómo determinan los precios y márgenes de ganancia por producto?</label>
+          <textarea name="precios_margenes" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Cuál consideran que es hoy el principal "punto ciego" respecto al dinero del negocio?</label>
+          <textarea name="punto_ciego_financiero" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- Sección 3 -->
+      <fieldset class="space-y-4">
+        <legend class="text-lg font-bold text-slate-900 border-b border-slate-200 w-full pb-2 uppercase text-xs tracking-wider text-sky-600">3. Depósito e Inventario</legend>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Cómo registran las entradas de proveedores y las salidas al mostrador?</label>
+          <textarea name="registro_deposito" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Con qué frecuencia detectan faltantes, diferencias de stock o compras en exceso?</label>
+          <textarea name="frecuencia_desviaciones_stock" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- Sección 4 -->
+      <fieldset class="space-y-4">
+        <legend class="text-lg font-bold text-slate-900 border-b border-slate-200 w-full pb-2 uppercase text-xs tracking-wider text-sky-600">4. Migración a Quantium & Tecnología</legend>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿En qué etapa exacta se encuentra hoy la implementación de Quantium?</label>
+          <textarea name="etapa_quantium" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Quién es el referente interno asignado para liderar esta migración?</label>
+          <input type="text" name="referente_quantium" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none">
+        </div>
+      </fieldset>
+
+      <!-- Sección 5 -->
+      <fieldset class="space-y-4">
+        <legend class="text-lg font-bold text-slate-900 border-b border-slate-200 w-full pb-2 uppercase text-xs tracking-wider text-sky-600">5. Expectativas del Proyecto</legend>
+        <div>
+          <label class="block font-semibold text-sm mb-1">¿Qué problema urgente necesitan resolver en los próximos 60 días?</label>
+          <textarea name="meta_60_dias" rows="2" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">Enviar Relevamiento a LÓGICA</button>
+    </form>
+  </div>
+
+</body>
+</html>
