@@ -12,12 +12,12 @@
       --navy:   #1F3864;
       --accent: #2E75B6;
       --light:  #EAF1F8;
-      --slate:  #64748b;
       --border: #CBD5E1;
       --bg:     #F8FAFC;
       --white:  #FFFFFF;
       --text:   #1E293B;
       --muted:  #64748B;
+      --green:  #16A34A;
     }
 
     body {
@@ -70,7 +70,6 @@
       border-radius: 2px;
     }
 
-    /* ── INTRO ── */
     .intro {
       max-width: 760px;
       margin: 2rem auto;
@@ -86,7 +85,6 @@
       font-size: .875rem;
       line-height: 1.7;
     }
-    .intro-box p + p { margin-top: .6rem; }
 
     /* ── FORM ── */
     form {
@@ -98,7 +96,6 @@
       gap: 2rem;
     }
 
-    /* ── SECTION ── */
     .section {
       background: var(--white);
       border: 1px solid var(--border);
@@ -119,7 +116,6 @@
       letter-spacing: .1em;
       color: var(--accent);
       text-transform: uppercase;
-      white-space: nowrap;
     }
     .section-title {
       font-size: .9rem;
@@ -140,12 +136,7 @@
       gap: 1.4rem;
     }
 
-    /* ── SUBSECTION ── */
-    .subsec {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+    .subsec { display: flex; flex-direction: column; gap: 1rem; }
     .subsec-label {
       font-size: .7rem;
       font-weight: 700;
@@ -156,23 +147,10 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* ── FIELD ── */
     .field { display: flex; flex-direction: column; gap: .35rem; }
-    .field label {
-      font-size: .84rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-    .field .hint {
-      font-size: .75rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-top: -.15rem;
-    }
-    .field textarea,
-    .field input[type="text"],
-    .field input[type="email"],
-    .field select {
+    .field label { font-size: .84rem; font-weight: 500; color: var(--text); }
+    .field .hint { font-size: .75rem; color: var(--muted); font-style: italic; }
+    .field textarea, .field input[type="text"], .field input[type="email"] {
       width: 100%;
       padding: .6rem .8rem;
       border: 1px solid var(--border);
@@ -180,36 +158,12 @@
       font-family: inherit;
       font-size: .875rem;
       color: var(--text);
-      background: var(--white);
-      transition: border-color .15s, box-shadow .15s;
-      resize: vertical;
-    }
-    .field textarea:focus,
-    .field input:focus,
-    .field select:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(46,117,182,.12);
     }
     .field textarea { min-height: 72px; }
 
-    /* ── OPTION LISTS ── */
-    .options { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin-top: .1rem; }
-    .opt {
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-      font-size: .84rem;
-      cursor: pointer;
-    }
-    .opt input { accent-color: var(--accent); cursor: pointer; }
+    .options { display: flex; flex-wrap: wrap; gap: .5rem .75rem; }
+    .opt { display: flex; align-items: center; gap: .4rem; font-size: .84rem; cursor: pointer; }
 
-    .field-highlight textarea {
-      border-color: var(--accent);
-      background: #F0F7FF;
-    }
-
-    /* ── SUBMIT ── */
     .submit-wrap {
       background: var(--white);
       border: 1px solid var(--border);
@@ -218,10 +172,6 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-    }
-    .submit-note {
-      font-size: .8rem;
-      color: var(--muted);
     }
     button[type="submit"] {
       background: var(--navy);
@@ -233,11 +183,94 @@
       font-size: .95rem;
       font-weight: 600;
       cursor: pointer;
-      letter-spacing: .03em;
       transition: background .15s;
-      align-self: flex-start;
     }
     button[type="submit"]:hover { background: var(--accent); }
+
+    /* ── MODAL DE ÉXITO ── */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-card {
+      background: var(--white);
+      max-width: 520px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      border-top: 6px solid var(--accent);
+    }
+    .modal-icon {
+      width: 56px;
+      height: 56px;
+      background: #DCFCE7;
+      color: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .modal-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .modal-subtitle {
+      font-size: .95rem;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+    .stats-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-box { display: flex; flex-direction: column; align-items: center; }
+    .stat-num { font-size: 1.4rem; font-weight: 700; color: var(--navy); }
+    .stat-num.pending { color: var(--muted); }
+    .stat-label { font-size: .75rem; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .modal-text {
+      font-size: .875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .btn-close {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: .75rem 1.75rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: .9rem;
+      cursor: pointer;
+    }
+    .btn-close:hover { background: var(--accent); }
 
     footer {
       text-align: center;
@@ -245,14 +278,6 @@
       font-size: .75rem;
       color: var(--muted);
       border-top: 1px solid var(--border);
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 1.75rem 1rem 1.5rem; }
-      .section-body { padding: 1rem; }
-      .section-header { padding: .75rem 1rem; }
-      .section-intro { padding: .75rem 1rem .5rem; }
-      button[type="submit"] { width: 100%; text-align: center; }
     }
   </style>
 </head>
@@ -270,13 +295,11 @@
 
 <div class="intro">
   <div class="intro-box">
-    <p>El objetivo de este relevamiento es mapear el funcionamiento diario de la ferretería (roles, flujos de trabajo e información) para estructurar un plan de trabajo de consultoría a medida. No se buscan números o datos exactos, sino conocer la realidad operativa actual.</p>
-    <p>Pueden completarlo entre los integrantes de la familia distribuyéndose las secciones. Si alguna consulta no aplica, pueden indicarlo para profundizar en la reunión de devolución.</p>
+    <p>El objetivo de este relevamiento es mapear el funcionamiento diario de la ferretería (roles, flujos de trabajo e información) para estructurar un plan de trabajo de consultoría a medida. Pueden completarlo entre los integrantes de la familia distribuyéndose las secciones.</p>
   </div>
 </div>
 
-<!-- Reemplazar la URL en 'action' por tu webhook de Apps Script de Google Sheets -->
-<form action="https://script.google.com/macros/s/AKfycbxDRD_e93-CO_w__tdwkr0Zx2_sH35XZF0VT6b9EjfM4gr2GzRMr7Y87ipnbtQGtzfRMg/exec" method="POST">
+<form id="relevamientoForm" action="https://script.google.com/macros/s/AKfycbxDRD_e93-CO_w__tdwkr0Zx2_sH35XZF0VT6b9EjfM4gr2GzRMr7Y87ipnbtQGtzfRMg/exec" method="POST">
 
   <!-- Datos de contacto -->
   <div class="section">
@@ -314,36 +337,26 @@
       <span class="section-num">Sección 1</span>
       <span class="section-title">Estructura Organizativa y Roles Actuales</span>
     </div>
-    <div class="section-intro">
-      Identificación de responsabilidades, solapamiento de funciones y dinámica de trabajo entre la familia y el personal.
-    </div>
     <div class="section-body">
-
       <div class="subsec">
         <div class="subsec-label">Roles familiares y empleados</div>
         <div class="field">
           <label>¿Cómo se reparten hoy las tareas entre el fundador y los 3 hijos?</label>
-          <span class="hint">Especifique qué área o tareas principales lidera cada uno (compras, ventas, administración, depósito, etc.).</span>
           <textarea name="roles_familia"></textarea>
         </div>
         <div class="field">
           <label>¿Cuentan con empleados adicionales? Indicar cantidad y sector de desempeño.</label>
-          <input type="text" name="personal_adicional" placeholder="Ej: 2 en mostrador, 1 en depósito, 1 en administración">
+          <input type="text" name="personal_adicional" placeholder="Ej: 2 en mostrador, 1 en depósito">
         </div>
         <div class="field">
-          <label>¿Existen descripciones de puestos formales o escritas, o las tareas se fueron asignando por costumbre?</label>
+          <label>¿Existen descripciones de puestos formales o escritas?</label>
           <div class="options">
             <label class="opt"><input type="radio" name="definicion_puestos" value="Formales"> Formales por escrito</label>
             <label class="opt"><input type="radio" name="definicion_puestos" value="Informales"> Informales / De palabra</label>
             <label class="opt"><input type="radio" name="definicion_puestos" value="Sin definicion"> Sin definición clara</label>
           </div>
         </div>
-        <div class="field">
-          <label>¿Cuáles consideran que son hoy los principales cuellos de botella o interferencias de funciones en el día a día?</label>
-          <textarea name="conflictos_roles"></textarea>
-        </div>
       </div>
-
     </div>
   </div>
 
@@ -353,53 +366,18 @@
       <span class="section-num">Sección 2</span>
       <span class="section-title">Administración y Flujos de Información</span>
     </div>
-    <div class="section-intro">
-      Mapeo de cómo circula la información desde las ventas y compras hasta la rendición financiera de la empresa.
-    </div>
     <div class="section-body">
-
       <div class="subsec">
-        <div class="subsec-label">Flujo de Ventas y Cobranzas</div>
+        <div class="subsec-label">Flujos de Trabajo</div>
         <div class="field">
           <label>¿Cómo es el circuito desde que un cliente pide presupuesto hasta que cobra y entrega la mercadería?</label>
-          <span class="hint">Diferenciar mostrador al público vs. clientes corporativos / cuentas corrientes.</span>
           <textarea name="flujo_ventas"></textarea>
         </div>
         <div class="field">
-          <label>¿Cómo aprueban y controlan las condiciones de crédito, límites y cobranzas a clientes en cuenta corriente?</label>
-          <textarea name="gestion_creditos"></textarea>
-        </div>
-      </div>
-
-      <div class="subsec">
-        <div class="subsec-label">Compras, Proveedores y Pagos</div>
-        <div class="field">
-          <label>¿Cómo detectan la necesidad de compra y quién emite las órdenes de pedido a proveedores?</label>
+          <label>¿Cómo detectan la necesidad de compra y quién emite las órdenes de pedido?</label>
           <textarea name="circuito_compras"></textarea>
         </div>
-        <div class="field">
-          <label>¿Cómo controlan el ingreso de facturas de proveedores contra las entregas físicas y los pagos realizados?</label>
-          <textarea name="control_pagos_compras"></textarea>
-        </div>
       </div>
-
-      <div class="subsec">
-        <div class="subsec-label">Depósito e Inventario</div>
-        <div class="field">
-          <label>¿Cómo notifican al sector administrativo la recepción de mercadería o faltantes de stock?</label>
-          <textarea name="flujo_deposito_administracion"></textarea>
-        </div>
-        <div class="field">
-          <label>¿Con qué frecuencia realizan controles físicos de stock frente a lo registrado en el sistema?</label>
-          <div class="options">
-            <label class="opt"><input type="radio" name="control_stock" value="Semanal"> Semanal</label>
-            <label class="opt"><input type="radio" name="control_stock" value="Mensual"> Mensual</label>
-            <label class="opt"><input type="radio" name="control_stock" value="Anual"> Anual</label>
-            <label class="opt"><input type="radio" name="control_stock" value="Nunca"> No se realiza periódicamente</label>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -409,101 +387,109 @@
       <span class="section-num">Sección 3</span>
       <span class="section-title">Sistemas Actuales y Migración a Quantium</span>
     </div>
-    <div class="section-intro">
-      Evaluación de la infraestructura de software actual y estado de la transición tecnológica.
-    </div>
     <div class="section-body">
-
-      <div class="subsec">
-        <div class="subsec-label">Sistemas y Herramientas</div>
-        <div class="field">
-          <label>¿Qué sistema o software tradicional están utilizando hoy y para qué procesos específicos?</label>
-          <input type="text" name="sistema_actual" placeholder="Nombre del sistema actual (ej: Tango, Holistor, Excel, etc.)">
-        </div>
-        <div class="field">
-          <label>¿Utilizan planillas de Excel o cuadernos paralelos para complementar lo que el sistema actual no resuelve?</label>
-          <textarea name="herramientas_paralelas" placeholder="Detalle qué llevan por fuera del sistema (ej: caja chica, comisiones, cuentas corrientes)"></textarea>
+      <div class="field">
+        <label>¿Qué sistema o software tradicional están utilizando hoy?</label>
+        <input type="text" name="sistema_actual" placeholder="Ej: Tango, Holistor, Excel, etc.">
+      </div>
+      <div class="field">
+        <label>¿En qué estado exacto se encuentra la migración a Quantium?</label>
+        <div class="options">
+          <label class="opt"><input type="radio" name="estado_quantium" value="Analisis previo"> Análisis inicial / Contratación</label>
+          <label class="opt"><input type="radio" name="estado_quantium" value="Parametrizacion"> Parametrización y carga de datos</label>
+          <label class="opt"><input type="radio" name="estado_quantium" value="Pruebas"> Pruebas y capacitación</label>
+          <label class="opt"><input type="radio" name="estado_quantium" value="En pausa"> En pausa / Con dificultades</label>
         </div>
       </div>
-
-      <div class="subsec">
-        <div class="subsec-label">Migración a Quantium</div>
-        <div class="field">
-          <label>¿En qué estado exacto se encuentra la migración a Quantium?</label>
-          <div class="options">
-            <label class="opt"><input type="radio" name="estado_quantium" value="Analisis previo"> Análisis inicial / Contratación</label>
-            <label class="opt"><input type="radio" name="estado_quantium" value="Parametrizacion"> Parametrización y carga de datos</label>
-            <label class="opt"><input type="radio" name="estado_quantium" value="Pruebas"> Pruebas y capacitación</label>
-            <label class="opt"><input type="radio" name="estado_quantium" value="Parado"> En pausa / Con dificultades</label>
-          </div>
-        </div>
-        <div class="field">
-          <label>¿Quién es el referente o interlocutor interno asignado para liderar este cambio de sistema?</label>
-          <input type="text" name="referente_quantium" placeholder="Nombre de la persona dentro de la empresa">
-        </div>
-        <div class="field">
-          <label>¿Cuáles son los reportes o datos críticos indispensables que necesitan que Quantium entregue funcionando?</label>
-          <textarea name="reportes_criticos_quantium" rows="2"></textarea>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Sección 4 -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-num">Sección 4</span>
-      <span class="section-title">Expectativas, Presencia Digital y Objetivos del Proyecto</span>
-    </div>
-    <div class="section-intro">
-      Definición de metas prioritarias para orientar la propuesta comercial y el plan de trabajo de Lógica.
-    </div>
-    <div class="section-body">
-
-      <div class="subsec">
-        <div class="subsec-label">Presencia Digital</div>
-        <div class="field">
-          <label>¿Qué expectativas tienen respecto a la presencia digital del negocio a mediano plazo?</label>
-          <div class="options">
-            <label class="opt"><input type="radio" name="objetivo_digital" value="Web institucional"> Web institucional / Catálogo</label>
-            <label class="opt"><input type="radio" name="objetivo_digital" value="Ecommerce"> Tienda online (E-commerce)</label>
-            <label class="opt"><input type="radio" name="objetivo_digital" value="Redes y WhatsAapp"> Solo mejorar WhatsApp y Redes Sociales</label>
-            <label class="opt"><input type="radio" name="objetivo_digital" value="Sin prioridad"> No es prioridad en este momento</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="subsec">
-        <div class="subsec-label">Metas de la Consultoría</div>
-        <div class="field field-highlight">
-          <label>Si tuvieran que resolver UN solo problema prioritario en los primeros 60 días, ¿cuál sería?</label>
-          <textarea name="prioridad_60_dias"></textarea>
-        </div>
-        <div class="field">
-          <label>¿Qué resultados concretos esperaría ver la familia al finalizar este proyecto de consultoría para considerarlo exitoso?</label>
-          <textarea name="expectativas_exito"></textarea>
-        </div>
-        <div class="field">
-          <label>¿Existe algún hecho o disparador reciente que haya motivado la decisión de buscar asesoramiento externo ahora?</label>
-          <textarea name="disparador_proyecto" rows="2"></textarea>
-        </div>
-      </div>
-
     </div>
   </div>
 
   <!-- Submit -->
   <div class="submit-wrap">
-    <p class="submit-note">Al presionar enviar, la información será enviada directamente al equipo de consultoría de Lógica para elaborar la propuesta técnica y comercial.</p>
     <button type="submit">Enviar relevamiento a Logica →</button>
   </div>
 
 </form>
 
+<!-- Modal de Confirmación -->
+<div id="successModal" class="modal-overlay">
+  <div class="modal-card">
+    <div class="modal-icon">✓</div>
+    <div class="modal-title">¡Información Enviada con Éxito!</div>
+    <div class="modal-subtitle">Ya dieron el primer paso para iniciar un cambio junto a Lógica.</div>
+    
+    <div class="stats-container">
+      <div class="stat-box">
+        <span id="statRespondidas" class="stat-num">0</span>
+        <span class="stat-label">Respuestas Completadas</span>
+      </div>
+      <div class="stat-box">
+        <span id="statPendientes" class="stat-num pending">0</span>
+        <span class="stat-label">Preguntas Omitidas</span>
+      </div>
+    </div>
+
+    <p class="modal-text">
+      Analizaremos detalladamente los datos de su operación para elaborar el diagnóstico técnico y la propuesta de trabajo a medida. Nos pondremos en contacto a la brevedad.
+    </p>
+
+    <button type="button" class="btn-close" onclick="cerrarModal()">Entendido</button>
+  </div>
+</div>
+
 <footer>
   &copy; 2026 Logica — Consultoría en Procesos &amp; Gestión Operativa · Confidencial
 </footer>
+
+<script>
+  document.getElementById('relevamientoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    let respondidas = 0;
+    let pendientes = 0;
+    
+    const elements = Array.from(form.elements).filter(el => 
+      ['TEXTAREA', 'INPUT', 'SELECT'].includes(el.tagName) && el.name && el.type !== 'submit'
+    );
+    
+    const fieldsByName = {};
+    elements.forEach(el => {
+      if (!fieldsByName[el.name]) fieldsByName[el.name] = [];
+      fieldsByName[el.name].push(el);
+    });
+    
+    Object.keys(fieldsByName).forEach(name => {
+      const group = fieldsByName[name];
+      if (group[0].type === 'radio') {
+        const isChecked = group.some(radio => radio.checked);
+        isChecked ? respondidas++ : pendientes++;
+      } else {
+        const val = group[0].value.trim();
+        val !== '' ? respondidas++ : pendientes++;
+      }
+    });
+
+    document.getElementById('statRespondidas').innerText = respondidas;
+    document.getElementById('statPendientes').innerText = pendientes;
+    
+    formData.append('respondidas', respondidas);
+    formData.append('pendientes', pendientes);
+
+    document.getElementById('successModal').classList.add('active');
+
+    fetch(form.action, { method: 'POST', body: formData })
+      .then(response => console.log('Datos guardados en Sheets'))
+      .catch(error => console.error('Error al enviar:', error));
+  });
+
+  function cerrarModal() {
+    document.getElementById('successModal').classList.remove('active');
+    document.getElementById('relevamientoForm').reset();
+  }
+</script>
 
 </body>
 </html>
